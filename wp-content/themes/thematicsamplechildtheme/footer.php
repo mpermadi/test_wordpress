@@ -6,7 +6,11 @@
  *
  */
 ?>
-
+		<?php // action hook for placing content above the closing of the #main div
+			thematic_abovemainclose();
+		?>
+		
+		</div><!-- #main -->
 	<center>
 		<span class="i10">
 			<span style="font-size:11px">

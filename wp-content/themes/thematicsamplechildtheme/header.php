@@ -72,12 +72,25 @@
 			echo ( apply_filters( 'thematic_open_header',  '<div id="header">' ) );
     	?>
 
-
-        	<?php 
-				// Action hook creating the theme header
-				thematic_header();
-       		?>
-       		
+    	<center>
+				<table cellspacing="0" cellpadding="0" width="100%" border="0">
+					<tbody>
+						<tr>
+							<td align="left">                    </td>
+							<td align="center">
+								<a target="_blank" href="http://www.firearmsforsale.com/a/1/2">
+								<img width="500" height="50" border="0" alt="Ammo for sale at FirearmsForSale" src="wp-content/uploads/2014/11/firearmsforsale-banner2.png">
+								</a>
+							</td>
+							<td align="center">
+								<button id="login_register" class="cb ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only cboxElement" href="/?login=1&from=main&ru=http%3A%2F%2Fammoseek.com%2F" role="button" aria-disabled="false">
+								<span class="ui-button-text">Log In / Join</span>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</center>
     	<?php  	
     		// Filter provided for altering output of the header closing element
 			echo ( apply_filters( 'thematic_close_header', '</div><!-- #header-->' ) );

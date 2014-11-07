@@ -44,7 +44,7 @@ th.top {
    padding: 7px 7px 7px 7px;
    border-style: none none none none;
    border-color: gray gray gray gray;
-   background: url('/img/bgstripes.png');
+   background: url('../../img/bgstripes.png');
    -moz-border-radius: 15px 15px 0px 0px;
    border-radius: 15px 15px 0px 0px;
    /*
@@ -58,7 +58,7 @@ th.side {
    padding: 7px 7px 7px 7px;
    border-style: none none none none;
    border-color: gray gray gray gray;
-   background: url('/img/bgstripes.png');
+   background: url('../../img/bgstripes.png');
    width:1px;
 }
 
@@ -68,7 +68,7 @@ th.bottom {
    height: 0px;
    border-style: none none none none;
    border-color: gray gray gray gray;
-   background: url('/img/bgstripes.png');
+   background: url('../../img/bgstripes.png');
    -moz-border-radius: 0px 0px 15px 15px;
    border-radius: 0px 0px 15px 15px;
    /*

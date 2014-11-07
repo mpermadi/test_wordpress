@@ -20,44 +20,36 @@
 	thematic_abovecontainer();
 ?>
 
-		<div id="container">
-
-			<?php
-		    	// action hook for placing content above #content
-				thematic_abovecontent();
+		<table class="main" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+			<tr>
+				<th class="top" style="height:0px;" colspan="5"></th>
+			</tr>
+			<tr>
+				<th class="side"></th>
+				<td class="main" width="200" valign="top" align="left" style="background: url('<?php bloginfo('stylesheet_directory'); ?>/img/bgammo.jpg');">
+				<?php
+					thematic_sidebar();
+					get_sidebar('1st-subsidiary-aside');
+				?>
+				</td>
+				<td class="main" valign="top" align="left">
 				
-				// filter for manipulating the element that wraps the content 
-				echo apply_filters( 'thematic_open_id_content', '<div id="content">' . "\n\n" );
+					tes2
 				
-				// create the navigation above the content
-            	thematic_navigation_above();
-				
-            	// calling the widget area 'index-top'
-            	get_sidebar('index-top');
-				
-            	// action hook for placing content above the index loop
-            	thematic_above_indexloop();
-				
-            	// action hook creating the index loop
-            	thematic_indexloop();
-				
-            	// action hook for placing content below the index loop
-            	thematic_below_indexloop();
-				
-            	// calling the widget area 'index-bottom'
-            	get_sidebar('index-bottom');
-				
-            	// create the navigation below the content
-            	thematic_navigation_below();
-            ?>
-
-			</div><!-- #content -->
-
-			<?php
-				// action hook for placing content below #content
-				thematic_belowcontent();
-			?>
-		</div><!-- #container -->
+				</td>
+				<td class="main" width="200" valign="top" align="left" style="background: url('<?php bloginfo('stylesheet_directory'); ?>/img/bgammo.jpg');">
+				<?php
+					get_sidebar('index-top');
+				?>
+				</td>
+				<th class="side"></th>
+			</tr>
+			<tr>
+				<th class="bottom" style="height:0px;" colspan="5"></th>
+			</tr>
+			</tbody>
+		</table>
 		
 <?php
 	// action hook for placing content below #container

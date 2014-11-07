@@ -28,19 +28,22 @@
 			<tr>
 				<th class="side"></th>
 				<td class="main" width="200" valign="top" align="left" style="background: url('<?php bloginfo('stylesheet_directory'); ?>/img/bgammo.jpg');">
+				
 				<?php
-					thematic_sidebar();
-					get_sidebar('1st-subsidiary-aside');
+					get_sidebar('index-top');
 				?>
 				</td>
 				<td class="main" valign="top" align="left">
-				
-					tes2
-				
+					<center>
+						<?php
+							get_sidebar('primary-aside');
+						?>
+					</center>
 				</td>
 				<td class="main" width="200" valign="top" align="left" style="background: url('<?php bloginfo('stylesheet_directory'); ?>/img/bgammo.jpg');">
+				
 				<?php
-					get_sidebar('index-top');
+					get_sidebar('index-bottom');
 				?>
 				</td>
 				<th class="side"></th>

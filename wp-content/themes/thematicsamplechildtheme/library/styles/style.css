@@ -323,7 +323,7 @@ hr.hr {
 /*URL: http://www.dynamicdrive.com/style/ */
 
 a.ovalbutton{
-background: transparent url('/img/oval-blue-left.gif') no-repeat top left;
+background: transparent url('../../img/oval-blue-left.gif') no-repeat top left;
 display: block;
 float: left;
 font-weight:bold;
@@ -340,7 +340,7 @@ color: #494949; /*button text color*/
 }
 
 a.ovalbutton span{
-background: transparent url('/img/oval-blue-right.gif') no-repeat top right;
+background: transparent url('../../img/oval-blue-right.gif') no-repeat top right;
 display: block;
 padding: 4px 11px 4px 0; /*Set 11px below to match value of 'padding-left' value above*/
 }

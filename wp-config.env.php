@@ -16,7 +16,7 @@
 
 // Set environment based on hostname
 switch ($hostname) {
-    case 'http://local.wordpress.test.com/':
+    case 'local.wordpress.test.com':
         define('WP_ENV', 'development');
         break;
     

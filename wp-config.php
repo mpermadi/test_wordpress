@@ -14,61 +14,79 @@
  * @package WordPress
  */
 
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define('DB_NAME', 'wordpress');
-
-/** MySQL database username */
-define('DB_USER', 'root');
-
-/** MySQL database password */
-define('DB_PASSWORD', '');
-
-/** MySQL hostname */
-define('DB_HOST', 'localhost');
-
-/** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
-
-/** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
-
-/**#@+
- * Authentication Unique Keys and Salts.
- *
- * Change these to different unique phrases!
- * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
- * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
- *
- * @since 2.6.0
- */
-define('AUTH_KEY',         'jNWcMMo|z(=Xa|K8OMpZ<VfGJH?)o;[jpVc{;#e.1Xc.x.8*bkY2&@-upK/,+A--');
-define('SECURE_AUTH_KEY',  'Py[.mV-TiDn%g5Wol|mNWl4sw/e0AyF?De@}S8gT(|E7568dxYQa+hy_kDPc+xnL');
-define('LOGGED_IN_KEY',    'x6mN_}+ [FF<g.|~BE|8--VNkS~SS,v:{uc>+!n[7]}(h& Ov_L<NV`A.:5;d| a');
-define('NONCE_KEY',        '-c!U8,8}}[`CK~!:9&jjrG368Mz]J`X>|/aS-J~>2k$[C#;0rqx0i_t!Iid?+?YS');
-define('AUTH_SALT',        'BD~DuV2162f`)0h~*hi+4&/_Bs/- JXHnX&|C26/c&`[7z) 2y+p1Fig9j|Lp;9L');
-define('SECURE_AUTH_SALT', 'J?{campGM6W!{k3smPF3IPm)N39il/NP.:{sl~hZo)RN3v$?tV%`[A?7]#6D#2J:');
-define('LOGGED_IN_SALT',   'e5nd=_-k>j3n$kCH6|9EDrQ_3v=RN:dTTQm+*D?5w`DqP-Xfnn[PY@i@#;~w2CP;');
-define('NONCE_SALT',       '~a}~W5?*oj9nS8i2lM}jlc7e]b7@dH.u93 +9!:4FU+Z|E#8/z:Ewu!i2gNxzz<)');
-
-/**#@-*/
 
 /**
- * WordPress Database Table prefix.
- *
- * You can have multiple installations in one database if you give each a unique
- * prefix. Only numbers, letters, and underscores please!
+ * WordPress Multi-Environment Config
+ * 
+ * Loads config file based on current environment, environment can be set
+ * in either the environment variable 'WP_ENV' or can be set based on the 
+ * server hostname.
+ * 
+ * This also overrides the option_home and option_siteurl settings in the 
+ * WordPress database to ensure site URLs are correct between environments.
+ * 
+ * Common environment names are as follows, though you can use what you wish:
+ * 
+ *   production
+ *   staging
+ *   development
+ * 
+ * For each environment a config file must exist named wp-config.{environment}.php
+ * with any settings specific to that environment. For example a development 
+ * environment would use the config file: wp-config.development.php
+ * 
+ * Default settings that are common to all environments can exist in wp-config.default.php
+ * 
+ * @package    Studio 24 WordPress Multi-Environment Config
+ * @version    1.0
+ * @author     Studio 24 Ltd  <info@studio24.net>
  */
-$table_prefix  = 'wp_';
 
-/**
- * For developers: WordPress debugging mode.
- *
- * Change this to true to enable the display of notices during development.
- * It is strongly recommended that plugin and theme developers use WP_DEBUG
- * in their development environments.
- */
-define('WP_DEBUG', false);
+// Try environment variable 'WP_ENV'
+if (getenv('WP_ENV') !== false) {
+    // Filter non-alphabetical characters for security
+    define('WP_ENV', preg_replace('/[^a-z]/', '', getenv('WP_ENV')));
+} 
+
+// Define site host
+if (isset($_SERVER['X_FORWARDED_HOST']) && !empty($_SERVER['X_FORWARDED_HOST'])) {
+    $hostname = $_SERVER['X_FORWARDED_HOST'];
+} else {
+    $hostname = $_SERVER['HTTP_HOST'];
+}
+    
+// Try server hostname
+if (!defined('WP_ENV')) {
+    // Set environment based on hostname
+    include 'wp-config.env.php';
+}
+
+// Are we in SSL mode?
+if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+    $protocol = 'https://';
+} else {
+    $protocol = 'http://';
+}
+
+// Load default config
+include 'wp-config.default.php';
+
+// Load config file for current environment
+include 'wp-config.' . WP_ENV . '.php';
+
+// Define WordPress Site URLs if not already set in config files
+if (!defined('WP_SITEURL')) {
+    define('WP_SITEURL', $protocol . rtrim($hostname, '/'));
+}
+if (!defined('WP_HOME')) {
+    define('WP_HOME', $protocol . rtrim($hostname, '/'));
+}
+
+// Clean up
+unset($hostname, $protocol);
+
+/** End of WordPress Multi-Environment Config **/
+
 
 /* That's all, stop editing! Happy blogging. */
 
